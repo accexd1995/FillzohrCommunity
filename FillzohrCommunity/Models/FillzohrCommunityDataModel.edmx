@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FillzohrDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ForumPost">
+          <Key>
+            <PropertyRef Name="ForumPostId" />
+          </Key>
+          <Property Name="ForumPostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostText" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ForumPost_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="ForumPost" Type="Self.ForumPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ForumPost">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FillzohrDbModelStoreContainer">
+          <EntitySet Name="ForumPost" EntityType="Self.ForumPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ForumPost_User" Association="Self.FK_ForumPost_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ForumPost" EntitySet="ForumPost" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FillzohrDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ForumPost" Relationship="FillzohrDbModel.FK_ForumPost_User" FromRole="User" ToRole="ForumPost" />
+        </EntityType>
+        <EntityContainer Name="FillzohrDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="ForumPost" EntityType="FillzohrDbModel.ForumPost" />
+          <AssociationSet Name="FK_ForumPost_User" Association="FillzohrDbModel.FK_ForumPost_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ForumPost" EntitySet="ForumPost" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ForumPost">
+          <Key>
+            <PropertyRef Name="ForumPostId" />
+          </Key>
+          <Property Name="ForumPostId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostText" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="FillzohrDbModel.FK_ForumPost_User" FromRole="ForumPost" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_ForumPost_User">
+          <End Type="FillzohrDbModel.User" Role="User" Multiplicity="1" />
+          <End Type="FillzohrDbModel.ForumPost" Role="ForumPost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ForumPost">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FillzohrDbModelStoreContainer" CdmEntityContainer="FillzohrDbEntities">
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="FillzohrDbModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumPost">
+            <EntityTypeMapping TypeName="FillzohrDbModel.ForumPost">
+              <MappingFragment StoreEntitySet="ForumPost">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostText" ColumnName="PostText" />
+                <ScalarProperty Name="ForumPostId" ColumnName="ForumPostId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
