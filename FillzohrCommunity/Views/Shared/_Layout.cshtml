@@ -26,7 +26,19 @@
                     <li>@Html.ActionLink("User", "Index", "User")</li>
                     <li>@Html.ActionLink("Felleforum", "Index", "ForumPost")</li>
                 </ul>
+                <ul class="nav navbar-nav">
+                    <li class="logintext"><input type="text" placeholder="Enter Username" name="uname" required></li>
+                    <li><input type="password" placeholder="Enter Password" name="psw" required></li>
+                    <li><button>Sign in</button></li>
+                </ul>
             </div>
+            @*<div class="navbar-collapse collapse" style="float:right">
+                <ul class="nav navbar-nav">
+                    <li class="logintext"><input type="text" placeholder="Enter Username" name="uname" required></li>
+                    <li><input type="password" placeholder="Enter Password" name="psw" required></li>
+                    <li><button>Sign in</button></li>
+                </ul>
+            </div>*@
         </div>
     </div>
     <div class="container body-content">
