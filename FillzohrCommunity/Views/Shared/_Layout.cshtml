@@ -27,11 +27,12 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("User", "Index", "User")</li>
                     <li>@Html.ActionLink("Felleforum", "Index", "ForumPost")</li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li class="logintext"><input type="text" placeholder="Enter Username" name="uname" required></li>
-                    <li><input type="password" placeholder="Enter Password" name="psw" required></li>
-                    <li><button>Sign in</button></li>
+                    <li>@Html.ActionLink("Sign In", "Login", "Login")</li>
+                    @if (Session["userId"] != null)
+                    {
+                        <li><a>Hello @Session["userName"].ToString() !</a></li>
+                        <li><a href="@Url.Action("LogOut", "Login")">Log out</a></li>
+                    }
                 </ul>
             </div>
         </div>

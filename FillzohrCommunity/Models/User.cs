@@ -11,7 +11,8 @@ namespace FillzohrCommunity.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,13 @@ namespace FillzohrCommunity.Models
         }
     
         public int UserId { get; set; }
+        [Required(ErrorMessage = "You must enter a username.")]
         public string Username { get; set; }
+        [Required(ErrorMessage = "You must enter a password."),DataType(DataType.Password)]
         public string Password { get; set; }
-    
+
+        public string LoginErrorMessage { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ForumPost> ForumPost { get; set; }
     }

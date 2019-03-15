@@ -8,9 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using FillzohrCommunity.Models;
 
-namespace FillzohrCommunity.Controllers
+namespace FillzohrCommunity.Views
 {
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         private FillzohrDbEntities db = new FillzohrDbEntities();
 
@@ -48,20 +48,6 @@ namespace FillzohrCommunity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserId,Username,Password")] User user)
         {
-            foreach(var userx in db.User)
-            {
-                var existinguser = db.User.Find(userx.UserId);
-                if (existinguser.Username == user.Username)
-                {
-                    ModelState.AddModelError("Username", "The username already exists");
-                }
-            }
-
-            if (string.IsNullOrWhiteSpace(user.Password))
-            {
-                ModelState.AddModelError("Password", "No password detected");
-            }
-
             if (ModelState.IsValid)
             {
                 db.User.Add(user);
