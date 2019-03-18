@@ -1,0 +1,25 @@
+﻿@model FillzohrCommunity.Models.User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    <div>
+
+        <p>@Session["userId"].ToString()</p>
+
+        <ul>
+            <li><a href="@Url.Action("DeleteProfilePage", "User")" onclick="return confirm('Reaaally?');">Delete profile page</a></li>
+        </ul>
+
+    </div>
+</body>
+</html>

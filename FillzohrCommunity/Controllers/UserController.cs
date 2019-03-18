@@ -137,5 +137,16 @@ namespace FillzohrCommunity.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //DELETE PROFILE PAGE
+        public ActionResult DeleteProfilePage()
+        {
+            int userId = (int)Session["userId"];
+            User profile = db.User.Find(userId);
+            db.User.Remove(profile);
+            db.SaveChanges();
+            Session.Abandon();
+            return RedirectToAction("Index");
+        }
     }
 }

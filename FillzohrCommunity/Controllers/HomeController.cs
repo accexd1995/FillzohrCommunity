@@ -17,7 +17,7 @@ namespace FillzohrCommunity.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return View("~/Views/Profile/About.cshtml");
         }
 
         public ActionResult Contact()
@@ -25,6 +25,11 @@ namespace FillzohrCommunity.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult ProfileEdit()
+        {
+            return View("~/Views/Profile/ProfileEdit.cshtml");
         }
     }
 }
