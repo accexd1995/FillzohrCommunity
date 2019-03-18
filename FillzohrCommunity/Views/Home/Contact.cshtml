@@ -1,17 +1,80 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@model FillzohrCommunity.Models.User
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+@{
+    ViewBag.Title = "Upload profile picture";
+}
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+        #login-div {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+        }
+    </style>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <h2>@ViewBag.Title.</h2>
+    <h3></h3>
+    <div id="login-div">
+        @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Username)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Username)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Username)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Password)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Password)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2">
+                        <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Login" class="btn btn-default" />
+                        <a href="@Url.Action("Create", "User")">Register</a>
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>

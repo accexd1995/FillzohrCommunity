@@ -24,9 +24,9 @@ namespace FillzohrCommunity.Models
         public int UserId { get; set; }
         [Required(ErrorMessage = "You must enter a username.")]
         public string Username { get; set; }
-        [Required(ErrorMessage = "You must enter a password."),DataType(DataType.Password)]
+        [Required(ErrorMessage = "You must enter a password."), DataType(DataType.Password)]
         public string Password { get; set; }
-
+        public byte[] ProfilePicture { get; set; }
         public string LoginErrorMessage { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
