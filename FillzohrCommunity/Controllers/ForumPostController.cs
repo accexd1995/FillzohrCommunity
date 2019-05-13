@@ -52,6 +52,7 @@ namespace FillzohrCommunity.Controllers
         {
             if (ModelState.IsValid)
             {
+                forumPost.UserId = (int)Session["userId"];
                 db.ForumPost.Add(forumPost);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -32,9 +32,12 @@
             @Html.DisplayFor(modelItem => item.User.Username)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ForumPostId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ForumPostId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ForumPostId })
+            @if (Session["userName"].ToString() == item.User.Username)
+            { 
+                @Html.ActionLink("Edit", "Edit", new { id = item.ForumPostId }) 
+                @Html.ActionLink("Details", "Details", new { id = item.ForumPostId }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.ForumPostId })
+            }
         </td>
     </tr>
 }
