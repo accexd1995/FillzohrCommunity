@@ -30,3 +30,10 @@ textarea {
 .extra_margin {
     margin-top: 10px;
 }
+
+#center {
+    width: 80%;
+    z-index: 100;
+    position: absolute;
+    left: 10%;
+}
