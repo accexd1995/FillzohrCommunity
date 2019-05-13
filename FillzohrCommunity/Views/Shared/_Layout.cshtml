@@ -24,7 +24,10 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("User", "Index", "User")</li>
-                    <li>@Html.ActionLink("Felleforum", "Index", "ForumPost")</li>
+                    @if (Session["userId"] != null)
+                    {
+                        <li>@Html.ActionLink("Felleforum", "Index", "ForumPost")</li>
+                    }
                     @if (Session["userId"] == null)
                     {
                         <li>@Html.ActionLink("Sign In", "Login", "Login")</li>
